@@ -35,12 +35,21 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Center(
-          child: Text(
-            _appLifecycleState.toString(),
-            style: TextStyle(fontSize: 20.0),
-          ),
+        body: OrientationBuilder(
+          builder: (context, orientation) {
+            return Center(
+              child: Text(
+                _appLifecycleState.toString(),
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: orientation == Orientation.portrait
+                        ? Colors.green
+                        : Colors.red),
+              ),
+            );
+          },
         ),
       ),
     );
